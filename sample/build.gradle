@@ -10,7 +10,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
-        applicationId "com.github.islamkhsh.cardslider_example"
+        applicationId "com.github.islamkhsh.cardslider_sample"
         minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
@@ -24,6 +24,7 @@ android {
         }
     }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

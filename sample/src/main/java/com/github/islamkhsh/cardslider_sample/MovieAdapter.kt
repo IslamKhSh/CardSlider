@@ -1,7 +1,6 @@
-package com.github.islamkhsh.cardslider_example
+package com.github.islamkhsh.cardslider_sample
 
 import android.view.View
-import android.widget.TextView
 import com.github.islamkhsh.CardSliderAdapter
 import kotlinx.android.synthetic.main.item_card_content.view.*
 

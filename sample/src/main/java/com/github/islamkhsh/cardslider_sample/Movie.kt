@@ -1,4 +1,4 @@
-package com.github.islamkhsh.cardslider_example
+package com.github.islamkhsh.cardslider_sample
 
 data class Movie (
     val poster : Int,

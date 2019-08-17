@@ -1,7 +1,7 @@
-package com.github.islamkhsh.cardslider_example
+package com.github.islamkhsh.cardslider_sample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
