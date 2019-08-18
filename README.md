@@ -11,13 +11,15 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
 ## Features
-1- Can resize (scale) the height of card according to its position.
+1- show preview of pages in left and right.
 
-2- Full customize the appearance of the the CardView and ViewPager.
+2- can resize (scale) the pages to make focused page larger in height as shown in GIF.
 
-3- Add indicator and full customize it easily.
+3- Full customize the appearance of the the CardView and ViewPager.
 
-3- RTL Support.
+4- Add indicator and full customize it easily.
+
+5- RTL Support.
 
 
 ## Add to project
