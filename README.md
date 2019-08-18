@@ -1,21 +1,21 @@
 # Card Slider
 This is an amazing card slider for the Android platform with many features and attrs to get exactly what you need.
 
-![perview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider%201.gif)
+![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider%201.gif)
 
 
 ## Card Slider components
 1. [CardSliderViewPager](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderViewPager.kt):
-A cutom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-viewpager) to support RTL and uses a page transformer to apply scalling action as shown in GIF.
-2. [CardSliderIndicator](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderIndicator.kt): Custom LinearLayout that that contain indicaors as children views.
-3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abtract class that must be extended and passed to CardSliderviewPager as its adapter.
+A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-viewpager) to support RTL and uses a page transformer to apply scaling action as shown in GIF.
+2. [CardSliderIndicator](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderIndicator.kt): Custom LinearLayout that that contain indicators as children views.
+3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
 ## Features
 1- Can resize (scale) the height of card according to its position.
 
-2- Full cutomize the appearance of the the CardView and ViewPager.
+2- Full customize the appearance of the the CardView and ViewPager.
 
-3- Add Indicator and full customize it easily.
+3- Add indicator and full customize it easily.
 
 3- RTL Support.
 
@@ -66,7 +66,28 @@ class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies)
     }
 }
 ```
-3. Craeate item layout to return it in `getItemContentLayout`
+or using Java
+```
+public class MovieAdapter extends CardSliderAdapter<Movie> {
+    
+    public MovieAdapter(ArrayList<Movie> movies){
+        super(movies);
+    }
+    
+    @Override
+    public void bindView(int position, View itemContentView, Movie item) {
+      //TODO bind item object with item layout view
+    }
+
+    @Override
+    public int getItemContentLayout(int position) {
+        //TODO return the item layout of every position 
+        //This layout will be added as a child of CardView
+    }
+}
+```
+
+3. Create item layout to return it in `getItemContentLayout`
 
 4. Add adapter to CardSliderViewPager
 ```
@@ -76,6 +97,15 @@ class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies)
   
   findViewById<CardSliderViewPager>(R.id.viewPager).adapter = MoviesAdapter(movies)
 ```
+or using Java
+```
+  ArrayList<Movie> movies = ArrayList<Movie>();
+    // add items to arraylist
+  
+  CardSliderViewPager cardSliderViewPager = (CardSliderViewPager) findViewById(R.id.viewPager);
+  cardSliderViewPager.setAdapter(MoviesAdapter(movies));
+```
+
 
 5- To add indicator add it to your layout
 ```
@@ -100,13 +130,13 @@ And then bind it with your CardSliderViewPager
 | `cardSlider_smallScaleFactor` | The small scale of the next and previous pages. | 1 (no resizing) |
 | `cardSlider_baseShadow`  | The CardView Elevation when selected. |  2dp |
 | `cardSlider_minShadow` | The CardView Elevation of  next and previous cards. | baseShadow * smallScaleFactor |
-| `cardSlider_pageMargin` | The space between two pages. This must be large than **baseShadow + minShadow** or it will be overided. | baseShadow + minShadow |
+| `cardSlider_pageMargin` | The space between two pages. This must be large than **baseShadow + minShadow** or it will be override. | baseShadow + minShadow |
 | `cardSlider_otherPagesWidth` | The width of displayed parts from next and previous cards . | 0 |
 | `cardSlider_cardBackgroundColor` | The background color of the card. | White |
 | `cardSlider_cardCornerRadius` | The corner radius of the card view. | 0 |
 | `cardSlider_indicator` | The id of **CardSliderIndicator** to work with this view pager. | no indicator |
 
-paddingLeft and right will be overided with `otherPagesWidth + pageMargin` 
+paddingLeft and right will be override with `otherPagesWidth + pageMargin` 
 
  2- CardSliderIndicator
  
