@@ -4,12 +4,18 @@ This is an amazing card slider for the Android platform with many features and a
 ![perview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider%201.gif)
 
 
-
 ## Card Slider components
 1. [CardSliderViewPager](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderViewPager.kt):
 A cutom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-viewpager) to support RTL and uses a page transformer to apply scalling action as shown in GIF.
 2. [CardSliderIndicator](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderIndicator.kt): Custom LinearLayout that that contain indicaors as children views.
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abtract class that must be extended and passed to CardSliderviewPager as its adapter.
+
+## Features
+1- Can resize (scale) the height of card according to its position.
+2- Full cutomize the appearance of the the CardView and ViewPager.
+3- Add Indicator and full customize it easily.
+3- RTL Support.
+
 
 ## Add to project
 1. Add it in your root build.gradle at the end of repositories:
