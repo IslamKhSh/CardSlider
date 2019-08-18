@@ -12,8 +12,11 @@ A cutom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-viewp
 
 ## Features
 1- Can resize (scale) the height of card according to its position.
+
 2- Full cutomize the appearance of the the CardView and ViewPager.
+
 3- Add Indicator and full customize it easily.
+
 3- RTL Support.
 
 
