@@ -75,7 +75,7 @@ class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies)
             android:layout_height="wrap_content"
             android:id="@+id/indicator"/>
 ```
-And you must bind it with your CardSliderViewPager
+And then bind it with your CardSliderViewPager
 ```
   <com.github.islamkhsh.CardSliderViewPager
            .
