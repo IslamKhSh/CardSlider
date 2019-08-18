@@ -87,9 +87,7 @@ class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies)
 And then bind it with your CardSliderViewPager
 ```
   <com.github.islamkhsh.CardSliderViewPager
-           .
-           .
-           .
+            ...
             app:cardSlider_indicator="@id/indicator"/>
 ```
 
