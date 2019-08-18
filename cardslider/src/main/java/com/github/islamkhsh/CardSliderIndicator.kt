@@ -68,6 +68,8 @@ class CardSliderIndicator : LinearLayout {
 
     internal fun setupWithViewCardSliderViewPager(viewPager: CardSliderViewPager) {
 
+        removeAllViews()
+
         viewPager.adapter?.run {
 
             // create indicators

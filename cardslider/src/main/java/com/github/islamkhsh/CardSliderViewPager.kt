@@ -31,6 +31,10 @@ class CardSliderViewPager : RtlViewPager {
      * The card shadow in case of previous and next cards
      */
     var minShadow = baseShadow * smallScaleFactor
+        set(value) {
+            field = value
+            setPageMargin()
+        }
 
     /**
      * Space between pages
@@ -96,7 +100,7 @@ class CardSliderViewPager : RtlViewPager {
         cardCornerRadius = typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_cardCornerRadius, 0f)
 
         sliderPageMargin =
-            typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_pageMargin, baseShadow)
+            typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_pageMargin, baseShadow + minShadow)
 
         otherPagesWidth =
             typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_otherPagesWidth, 0f)
@@ -111,7 +115,7 @@ class CardSliderViewPager : RtlViewPager {
     }
 
     private fun setPageMargin() {
-        pageMargin = max(sliderPageMargin, baseShadow).toInt()
+        pageMargin = max(sliderPageMargin, baseShadow + minShadow).toInt()
         setPagePadding()
     }
 
