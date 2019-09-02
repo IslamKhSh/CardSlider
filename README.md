@@ -24,7 +24,7 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 
 ## Add to project
 1. Add it in your root build.gradle at the end of repositories:
-```
+```groovy
 allprojects {
 		repositories {
 			...
@@ -33,7 +33,7 @@ allprojects {
 	}
 ``` 
 2. Add the dependency:
-```
+```groovy
 implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
 ```
   Find the latest version [here](https://github.com/IslamKhSh/CardSlider/releases)
@@ -42,7 +42,7 @@ implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
  
  ## Usage
  1. Add it to your layout:
- ```
+ ```xml
   <com.github.islamkhsh.CardSliderViewPager
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@ implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
 ```
 
 2. Extend CardSliderAdapter
-```
+```kotlin
 class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies) {
 
     override fun bindView(position: Int, itemContentView: View, item: Movie?) {
@@ -69,7 +69,7 @@ class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies)
 }
 ```
 or using Java
-```
+```java
 public class MovieAdapter extends CardSliderAdapter<Movie> {
     
     public MovieAdapter(ArrayList<Movie> movies){
@@ -92,7 +92,7 @@ public class MovieAdapter extends CardSliderAdapter<Movie> {
 3. Create item layout to return it in `getItemContentLayout`
 
 4. Add adapter to CardSliderViewPager
-```
+```kotlin
   val movies = ArrayList<Movie>().apply{
   // add items to arraylist
   }
@@ -100,7 +100,7 @@ public class MovieAdapter extends CardSliderAdapter<Movie> {
   findViewById<CardSliderViewPager>(R.id.viewPager).adapter = MoviesAdapter(movies)
 ```
 or using Java
-```
+```kotlin
   ArrayList<Movie> movies = ArrayList<Movie>();
     // add items to arraylist
   
@@ -110,14 +110,14 @@ or using Java
 
 
 5- To add indicator add it to your layout
-```
+```xml
  <com.github.islamkhsh.CardSliderIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/indicator"/>
 ```
 And then bind it with your CardSliderViewPager
-```
+```xml
   <com.github.islamkhsh.CardSliderViewPager
             ...
             app:cardSlider_indicator="@id/indicator"/>
