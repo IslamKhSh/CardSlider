@@ -20,7 +20,7 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 
 4- Add indicator and full customize it easily.
 
-5- Infinete indicatords like those in the instgram app.
+5- Infinite indicators like those in the Instagram app.
 
 6- RTL Support.
 
@@ -152,4 +152,4 @@ paddingLeft and right will be override with `otherPagesWidth + pageMargin`
 | `defaultIndicator` | The indicator drawable in case of not selected | [default_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/default_dot.xml) |
 | `selectedIndicator`  | The indicator drawable in case of selected. |  [selected_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/selected_dot.xml) |
 | `indicatorMargin` | The space between indicators | the minimum width of `defaultIndicator` and `selectedIndicator` |
-| `indicatorsToShow` | The number of inicators to show and others will be hidden like instagram app | -1 (`CardSliderIndicator.UNLIMITED_INDICATORS`) |
+| `indicatorsToShow` | The number of indicators to show and others will be hidden like Instagram app | -1 (`CardSliderIndicator.UNLIMITED_INDICATORS`) |
