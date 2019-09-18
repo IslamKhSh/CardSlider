@@ -4,6 +4,8 @@ This is an amazing card slider for the Android platform with many features and a
 
 ![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider.gif)
 
+## Demo App
+[![Android app on Google Play](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=com.github.islamkhsh.cardslider_sample)
 
 ## Card Slider components
 1. [CardSliderViewPager](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderViewPager.kt):
