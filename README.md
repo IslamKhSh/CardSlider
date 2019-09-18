@@ -1,4 +1,5 @@
-# Card Slider
+# Card Slider  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856)
+
 This is an amazing card slider for the Android platform with many features and attrs to get exactly what you need.
 
 ![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider.gif)
@@ -13,13 +14,15 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 ## Features
 1- show preview of pages in left and right.
 
-2- can resize (scale) the pages to make focused page larger in height as shown in GIF.
+2- can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
 
 3- Full customize the appearance of the the CardView and ViewPager.
 
 4- Add indicator and full customize it easily.
 
-5- RTL Support.
+5- Infinete indicatords like those in the instgram app.
+
+6- RTL Support.
 
 
 ## Add to project
@@ -114,7 +117,8 @@ or using Java
  <com.github.islamkhsh.CardSliderIndicator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/indicator"/>
+            android:id="@+id/indicator"
+	    app:indicatorsToShow="5" />
 ```
 And then bind it with your CardSliderViewPager
 ```xml
@@ -130,6 +134,7 @@ And then bind it with your CardSliderViewPager
 | Attribute | Description  | Default value  |
 | ------------- |-------------| -----|
 | `cardSlider_smallScaleFactor` | The small scale of the next and previous pages. | 1 (no resizing) |
+| `cardSlider_smallAlphaFactor` | The small opacity factor of the next and previous pages. | 1 (no opacity) |
 | `cardSlider_baseShadow`  | The CardView Elevation when selected. |  2dp |
 | `cardSlider_minShadow` | The CardView Elevation of  next and previous cards. | baseShadow * smallScaleFactor |
 | `cardSlider_pageMargin` | The space between two pages. This must be large than **baseShadow + minShadow** or it will be override. | baseShadow + minShadow |
@@ -146,4 +151,5 @@ paddingLeft and right will be override with `otherPagesWidth + pageMargin`
 | ------------- |-------------| -----|
 | `defaultIndicator` | The indicator drawable in case of not selected | [default_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/default_dot.xml) |
 | `selectedIndicator`  | The indicator drawable in case of selected. |  [selected_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/selected_dot.xml) |
-| `indicatorMargin` | The space between indicators | the minimum width of `default_indicator` and `selected_indicator` |
+| `indicatorMargin` | The space between indicators | the minimum width of `defaultIndicator` and `selectedIndicator` |
+| `indicatorsToShow` | The number of inicators to show and others will be hidden like instagram app | -1 (`CardSliderIndicator.UNLIMITED_INDICATORS`) |
