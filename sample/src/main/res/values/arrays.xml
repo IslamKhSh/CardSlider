@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="posters">
+        <item>@drawable/harry_potter</item>
+        <item>@drawable/lord_of_rings</item>
+        <item>@drawable/the_matrix</item>
+        <item>@drawable/avengers</item>
+        <item>@drawable/x_men</item>
+        <item>@drawable/james_bond</item>
+        <item>@drawable/mission_impossible</item>
+        <item>@drawable/pirates_of_the_caribbean</item>
+    </integer-array>
+
+    <string-array name="titles">
+        <item>Harry Potter</item>
+        <item>The Lord of the Rings</item>
+        <item>The Matrix</item>
+        <item>Avengers Assemble</item>
+        <item>X-Men</item>
+        <item>James bond</item>
+        <item>Mission impossible</item>
+        <item>Pirates of the Caribbean</item>
+    </string-array>
+
+    <string-array name="overviews">
+        <item>An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.</item>
+        <item>A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.</item>
+        <item>A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.</item>
+        <item>Earth\'s mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.</item>
+        <item>In a world where mutants (evolved super-powered humans) exist and are discriminated against, two groups form for an inevitable clash: the supremacist Brotherhood, and the pacifist X-Men.</item>
+        <item>American spy James Bond must outsmart card wiz and crime boss LeChiffre while monitoring his actions.</item>
+        <item>An American agent, under false suspicion of disloyalty, must discover and expose the real spy without the help of his organization.</item>
+        <item>Blacksmith Will Turner teams up with eccentric pirate Captain Jack Sparrow to save his love, the governor\'s daughter, from Jack\'s former pirate allies, who are now undead.</item>
+    </string-array>
+</resources>

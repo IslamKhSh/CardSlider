@@ -6,6 +6,7 @@
         <attr name="cardSlider_otherPagesWidth" format="dimension"/>
 
         <attr name="cardSlider_smallScaleFactor" format="float"/>
+        <attr name="cardSlider_smallAlphaFactor" format="float" />
 
         <attr name="cardSlider_minShadow" format="dimension"/>
         <attr name="cardSlider_baseShadow" format="dimension"/>
@@ -17,12 +18,12 @@
 
     </declare-styleable>
 
-
     <declare-styleable name="CardSliderIndicator">
 
-        <attr name="default_indicator" format="reference"/>
-        <attr name="selected_indicator" format="reference"/>
-        <attr name="indicator_margin" format="dimension"/>
+        <attr name="defaultIndicator" format="reference" />
+        <attr name="selectedIndicator" format="reference" />
+        <attr name="indicatorMargin" format="dimension" />
+        <attr name="indicatorsToShow" format="integer" />
 
     </declare-styleable>
 

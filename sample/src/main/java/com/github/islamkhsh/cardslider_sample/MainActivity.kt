@@ -2,6 +2,7 @@ package com.github.islamkhsh.cardslider_sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.github.islamkhsh.CardSliderIndicator
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -13,26 +14,34 @@ class MainActivity : AppCompatActivity() {
 
         val movies = arrayListOf<Movie>()
 
-        movies.add(
-            Movie(R.drawable.harry_potter,"Harry Potter",
-            "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world."
-            ))
+        val posters = resources.obtainTypedArray(R.array.posters)
 
-        movies.add(
-            Movie(R.drawable.lord_of_rings,"The Lord of the Rings",
-            "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
-            ))
+        for (i in resources.getStringArray(R.array.titles).indices) {
+            movies.add(
+                Movie(
+                    posters.getResourceId(i, -1),
+                    resources.getStringArray(R.array.titles)[i],
+                    resources.getStringArray(R.array.overviews)[i]
+                )
+            )
+        }
 
-        movies.add(
-            Movie(R.drawable.the_matrix,"The Matrix",
-            "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers."
-            ))
-
-        movies.add(
-            Movie(R.drawable.avengers,"Avengers Assemble",
-            "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity."
-            ))
+        posters.recycle()
 
         viewPager.adapter = MovieAdapter(movies)
+
+        check_scaling.setOnCheckedChangeListener { _, isChecked ->
+            viewPager.smallScaleFactor = if (isChecked) 0.9f else 1f
+        }
+
+        check_alpha_changing.setOnCheckedChangeListener { _, isChecked ->
+            viewPager.smallAlphaFactor = if (isChecked) 0.5f else 1f
+        }
+
+        check_infinite_indicator.setOnCheckedChangeListener { _, isChecked ->
+            indicator.indicatorsToShow =
+                if (isChecked) 5 else CardSliderIndicator.UNLIMITED_INDICATORS
+        }
+
     }
 }

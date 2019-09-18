@@ -11,7 +11,7 @@ import androidx.viewpager.widget.PagerAdapter
 
 abstract class CardSliderAdapter<T>(private val items: ArrayList<T>) : PagerAdapter() {
 
-    private val cards = arrayOfNulls<CardView>(count)
+    internal val cards = arrayOfNulls<CardView>(count)
 
     private lateinit var cardSliderViewPager : CardSliderViewPager
 

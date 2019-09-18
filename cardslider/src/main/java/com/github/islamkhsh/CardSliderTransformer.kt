@@ -32,6 +32,7 @@ internal class CardSliderTransformer(private val viewPager: CardSliderViewPager)
 
             (page as CardView).cardElevation = viewPager.minShadow
             page.scaleY = viewPager.smallScaleFactor
+            page.alpha = viewPager.smallAlphaFactor
 
         } else {
             // This will be during transformation
@@ -39,6 +40,7 @@ internal class CardSliderTransformer(private val viewPager: CardSliderViewPager)
                 scalingEquation(viewPager.minShadow, viewPager.baseShadow, absPosition)
 
             page.scaleY = scalingEquation(viewPager.smallScaleFactor,1f, absPosition)
+            page.alpha = scalingEquation(viewPager.smallAlphaFactor, 1f, absPosition)
         }
     }
 

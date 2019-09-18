@@ -1,7 +1,7 @@
 # Card Slider
 This is an amazing card slider for the Android platform with many features and attrs to get exactly what you need.
 
-![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider%201.gif)
+![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider.gif)
 
 
 ## Card Slider components
@@ -144,6 +144,6 @@ paddingLeft and right will be override with `otherPagesWidth + pageMargin`
  
  | Attribute | Description  | Default value  |
 | ------------- |-------------| -----|
-| `default_indicator` | The indicator drawable in case of not selected | [default_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/default_dot.xml) |
-| `selected_indicator`  | The indicator drawable in case of selected. |  [selected_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/selected_dot.xml) |
-| `indicator_margin` | The space between indicators | the minimum width of `default_indicator` and `selected_indicator` |
+| `defaultIndicator` | The indicator drawable in case of not selected | [default_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/default_dot.xml) |
+| `selectedIndicator`  | The indicator drawable in case of selected. |  [selected_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/selected_dot.xml) |
+| `indicatorMargin` | The space between indicators | the minimum width of `default_indicator` and `selected_indicator` |
