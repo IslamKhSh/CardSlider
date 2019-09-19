@@ -14,9 +14,9 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
 ## Features
-1- show preview of pages in left and right.
+1- Show preview of pages in left and right.
 
-2- can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
+2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
 
 3- Full customize the appearance of the the CardView and ViewPager.
 
@@ -105,7 +105,7 @@ public class MovieAdapter extends CardSliderAdapter<Movie> {
   findViewById<CardSliderViewPager>(R.id.viewPager).adapter = MoviesAdapter(movies)
 ```
 or using Java
-```kotlin
+``` java
   ArrayList<Movie> movies = ArrayList<Movie>();
     // add items to arraylist
   
