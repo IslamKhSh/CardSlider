@@ -59,7 +59,7 @@ implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
             app:cardSlider_otherPagesWidth="24dp" // width of displayed parts of left and right pages
             app:cardSlider_pageMargin="12dp" // margin between pages
             app:cardSlider_cardCornerRadius="5dp" // corner radius of every page
-	    app:auto_slide_time="3"/>  // auto sliding time in seconds
+		   app:auto_slide_time="3"/>  // auto sliding time in seconds
 ```
 
 2. Extend CardSliderAdapter
@@ -147,7 +147,7 @@ And then bind it with your CardSliderViewPager
 | `cardSlider_cardBackgroundColor` | The background color of the card. | White |
 | `cardSlider_cardCornerRadius` | The corner radius of the card view. | 0 |
 | `cardSlider_indicator` | The id of **CardSliderIndicator** to work with this view pager. | no indicator |
-| `auto_slide_time` | The time in seconds to auto sliding between pages in it | no sliding (`CardSliderViewPager.STOP_AUTO_SLIDING`) |
+| `auto_slide_time` | The time in seconds to auto sliding between pages in it | no sliding (`STOP_AUTO_SLIDING`) |
 
 paddingLeft and right will be override with `otherPagesWidth + pageMargin` 
 
