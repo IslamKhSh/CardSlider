@@ -18,13 +18,15 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 
 2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
 
-3- Full customize the appearance of the the CardView and ViewPager.
+3- Can make pages auto swiped after specific time.
 
-4- Add indicator and full customize it easily.
+4- Full customize the appearance of the the CardView and ViewPager.
 
-5- Infinite indicators like those in the Instagram app.
+5- Add indicator and full customize it easily.
 
-6- RTL Support.
+6- Infinite indicators like those in the Instagram app.
+
+7- RTL Support.
 
 
 ## Add to project
@@ -56,7 +58,8 @@ implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
             app:cardSlider_smallScaleFactor="0.9" //scale factor of height of pages in left and right (1 if no resizing nedded)
             app:cardSlider_otherPagesWidth="24dp" // width of displayed parts of left and right pages
             app:cardSlider_pageMargin="12dp" // margin between pages
-            app:cardSlider_cardCornerRadius="5dp"/> // corner radius of every page
+            app:cardSlider_cardCornerRadius="5dp" // corner radius of every page
+	    app:auto_slide_time="3"/>  // auto sliding time in seconds
 ```
 
 2. Extend CardSliderAdapter
@@ -144,6 +147,7 @@ And then bind it with your CardSliderViewPager
 | `cardSlider_cardBackgroundColor` | The background color of the card. | White |
 | `cardSlider_cardCornerRadius` | The corner radius of the card view. | 0 |
 | `cardSlider_indicator` | The id of **CardSliderIndicator** to work with this view pager. | no indicator |
+| `auto_slide_time` | The time in seconds to auto sliding between pages in it | no sliding (`CardSliderViewPager.STOP_AUTO_SLIDING`) |
 
 paddingLeft and right will be override with `otherPagesWidth + pageMargin` 
 
