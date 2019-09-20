@@ -16,6 +16,8 @@
 
         <attr name="cardSlider_indicator" format="reference"/>
 
+        <attr name="auto_slide_time" format="integer" />
+
     </declare-styleable>
 
     <declare-styleable name="CardSliderIndicator">

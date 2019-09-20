@@ -2,12 +2,15 @@ package com.github.islamkhsh
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import androidx.viewpager.widget.PagerAdapter
 import com.duolingo.open.rtlviewpager.RtlViewPager
+import java.util.*
 import kotlin.math.max
 
 
@@ -52,10 +55,19 @@ import kotlin.math.max
             type = CardSliderViewPager::class,
             attribute = "cardSlider_cardCornerRadius",
             method = "setCardCornerRadius"
+        ),
+        BindingMethod(
+            type = CardSliderViewPager::class,
+            attribute = "auto_slide_time",
+            method = "setAutoSlideTime"
         )
     ]
 )
 class CardSliderViewPager : RtlViewPager {
+
+    companion object {
+        const val STOP_AUTO_SLIDING = -1
+    }
 
     private var indicatorId = -1
 
@@ -146,6 +158,17 @@ class CardSliderViewPager : RtlViewPager {
             adapter?.notifyDataSetChanged()
         }
 
+    /**
+     * The auto sliding time in seconds
+     */
+    var autoSlideTime = STOP_AUTO_SLIDING
+        set(value) {
+            field = value
+
+            initAutoSlidingTimer()
+        }
+
+    private lateinit var timer: Timer
 
     constructor(context: Context) : super(context) {
         init(null)
@@ -183,6 +206,9 @@ class CardSliderViewPager : RtlViewPager {
             typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_otherPagesWidth, 0f)
 
         indicatorId = typedArray.getResourceId(R.styleable.CardSliderViewPager_cardSlider_indicator, -1)
+
+        autoSlideTime =
+            typedArray.getInt(R.styleable.CardSliderViewPager_auto_slide_time, STOP_AUTO_SLIDING)
 
         typedArray.recycle()
 
@@ -245,7 +271,32 @@ class CardSliderViewPager : RtlViewPager {
             rootView.findViewById<CardSliderIndicator>(indicatorId)?.run {
                 viewPager = this@CardSliderViewPager
             }
+
+        doOnPageSelected { initAutoSlidingTimer() }
     }
 
+    private fun initAutoSlidingTimer() {
+
+        if (::timer.isInitialized) {
+            timer.cancel()
+            timer.purge()
+        }
+
+        if (autoSlideTime != STOP_AUTO_SLIDING) {
+            timer = Timer()
+            timer.schedule(SlidingTask(), autoSlideTime.toLong() * 1000)
+        }
+    }
+
+    private inner class SlidingTask : TimerTask() {
+
+        override fun run() {
+            adapter?.run {
+                Handler(Looper.getMainLooper()).post {
+                    currentItem = if (currentItem == count - 1) 0 else currentItem + 1
+                }
+            }
+        }
+    }
 
 }

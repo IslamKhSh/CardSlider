@@ -20,6 +20,7 @@
             app:cardSlider_pageMargin="12dp"
             app:cardSlider_cardCornerRadius="5dp"
             app:cardSlider_indicator="@id/indicator"
+            app:auto_slide_time="3"
     />
 
 
@@ -50,6 +51,16 @@
             android:id="@+id/check_alpha_changing"
             android:layout_marginTop="12dp"
             android:layout_marginStart="48dp" />
+
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Enable auto sliding"
+            android:id="@+id/check_enable_auto_sliding"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="48dp" />
+
 
     <CheckBox
             android:layout_width="wrap_content"

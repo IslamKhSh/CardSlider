@@ -58,7 +58,6 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
     var indicatorsToShow = UNLIMITED_INDICATORS
         set(value) {
             field = value
-            displayingRang = 0 until field
             viewPager?.currentItem = 0
             setupWithViewCardSliderViewPager()
         }
@@ -134,7 +133,9 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
 
     private fun changeIndicatorsDisplayingState(currentPosition: Int) {
 
-        if (currentPosition == displayingRang.first && swipeDirection == TO_START)
+        if (currentPosition == 0)
+            displayingRang = 0 until indicatorsToShow
+        else if (currentPosition == displayingRang.first && swipeDirection == TO_START)
             displayingRang = displayingRang.decrement()
         else if (currentPosition == displayingRang.last && swipeDirection == TO_END)
             displayingRang = displayingRang.increment(childCount - 1)
