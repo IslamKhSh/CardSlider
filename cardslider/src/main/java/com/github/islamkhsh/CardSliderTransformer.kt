@@ -9,7 +9,8 @@ import androidx.viewpager.widget.ViewPager
 import kotlin.math.absoluteValue
 
 
-internal class CardSliderTransformer(private val viewPager: CardSliderViewPager) : ViewPager.PageTransformer {
+internal class CardSliderTransformer(private val viewPager: CardSliderViewPager) :
+    ViewPager.PageTransformer {
 
     private val startOffset: Float
 
@@ -25,22 +26,23 @@ internal class CardSliderTransformer(private val viewPager: CardSliderViewPager)
     }
 
     override fun transformPage(page: View, position: Float) {
+        if (!position.isNaN()) {
+            val absPosition = (position - startOffset).absoluteValue
 
-        val absPosition = (position - startOffset).absoluteValue
+            if (absPosition >= 1) {
 
-        if (absPosition >= 1) {
+                (page as CardView).cardElevation = viewPager.minShadow
+                page.scaleY = viewPager.smallScaleFactor
+                page.alpha = viewPager.smallAlphaFactor
 
-            (page as CardView).cardElevation = viewPager.minShadow
-            page.scaleY = viewPager.smallScaleFactor
-            page.alpha = viewPager.smallAlphaFactor
+            } else {
+                // This will be during transformation
+                (page as CardView).cardElevation =
+                    scalingEquation(viewPager.minShadow, viewPager.baseShadow, absPosition)
 
-        } else {
-            // This will be during transformation
-            (page as CardView).cardElevation =
-                scalingEquation(viewPager.minShadow, viewPager.baseShadow, absPosition)
-
-            page.scaleY = scalingEquation(viewPager.smallScaleFactor,1f, absPosition)
-            page.alpha = scalingEquation(viewPager.smallAlphaFactor, 1f, absPosition)
+                page.scaleY = scalingEquation(viewPager.smallScaleFactor, 1f, absPosition)
+                page.alpha = scalingEquation(viewPager.smallAlphaFactor, 1f, absPosition)
+            }
         }
     }
 
