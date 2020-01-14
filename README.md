@@ -176,7 +176,7 @@ And then bind it with your CardSliderViewPager
 | `indicatorsToShow` | The number of indicators to show and others will be hidden like Instagram app | -1 (`CardSliderIndicator.UNLIMITED_INDICATORS`) |
 
 
-      Copyright [2109] [IslamKhSh]
+      Copyright [2019] [IslamKhSh]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
