@@ -132,7 +132,7 @@ or using Java
     // add items to arraylist
   
   CardSliderViewPager cardSliderViewPager = (CardSliderViewPager) findViewById(R.id.viewPager);
-  cardSliderViewPager.setAdapter(MoviesAdapter(movies));
+  cardSliderViewPager.setAdapter(new MoviesAdapter(movies));
 ```
 
 
