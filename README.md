@@ -94,7 +94,7 @@ public class MovieAdapter extends CardSliderAdapter<MovieAdapter.MovieViewHolder
     }
     
     @Override
-    publiv int getItemCount(){
+    public int getItemCount(){
     	return movies.getSize();
     }
     
@@ -174,3 +174,4 @@ And then bind it with your CardSliderViewPager
 | `selectedIndicator`  | The indicator drawable in case of selected. |  [selected_dot.xml](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/res/drawable/selected_dot.xml) |
 | `indicatorMargin` | The space between indicators | the minimum width of `defaultIndicator` and `selectedIndicator` |
 | `indicatorsToShow` | The number of indicators to show and others will be hidden like Instagram app | -1 (`CardSliderIndicator.UNLIMITED_INDICATORS`) |
+
