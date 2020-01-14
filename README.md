@@ -128,7 +128,7 @@ public class MovieAdapter extends CardSliderAdapter<MovieAdapter.MovieViewHolder
 ```
 or using Java
 ``` java
-  ArrayList<Movie> movies = ArrayList<Movie>();
+  ArrayList<Movie> movies = new ArrayList<Movie>();
     // add items to arraylist
   
   CardSliderViewPager cardSliderViewPager = (CardSliderViewPager) findViewById(R.id.viewPager);
