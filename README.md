@@ -1,6 +1,7 @@
-# Card Slider  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856)
+# Card Slider [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856) [![Jitpack.io](https://jitpack.io/v/IslamKhSh/CardSlider.svg)](https://jitpack.io/#IslamKhSh/CardSlider)
 
-This is an amazing card slider for the Android platform with many features and attrs to get exactly what you need.
+
+This is an Android library with many features and attrs to get exactly what you need.
 
 ![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider.gif)
 
@@ -9,7 +10,8 @@ This is an amazing card slider for the Android platform with many features and a
 
 ## Card Slider components
 1. [CardSliderViewPager](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderViewPager.kt):
-A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-viewpager) to support RTL and uses a page transformer to apply scaling action as shown in GIF.
+Custom ViewPager2 and uses a page transformer to apply scaling action as shown in GIF.
+	- As ViewPager2 is still a final class [follow this issue](https://issuetracker.google.com/issues/140751461), I added it as part of my package.
 2. [CardSliderIndicator](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderIndicator.kt): Custom LinearLayout that that contain indicators as children views.
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
@@ -27,6 +29,8 @@ A custom ViewPager built on [RTL ViewPager](https://github.com/duolingo/rtl-view
 6- Infinite indicators like those in the Instagram app.
 
 7- RTL Support.
+
+8- Support vertical orientation.
 
 
 ## Add to project
@@ -58,46 +62,63 @@ implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
             app:cardSlider_smallScaleFactor="0.9" //scale factor of height of pages in left and right (1 if no resizing nedded)
             app:cardSlider_otherPagesWidth="24dp" // width of displayed parts of left and right pages
             app:cardSlider_pageMargin="12dp" // margin between pages
-            app:cardSlider_cardCornerRadius="5dp" // corner radius of every page
 		   app:auto_slide_time="3"/>  // auto sliding time in seconds
 ```
 
-2. Extend CardSliderAdapter
-```kotlin
-class MovieAdapter(movies : ArrayList<Movie>) : CardSliderAdapter<Movie>(movies) {
+2. Create your item (page) layout.
 
-    override fun bindView(position: Int, itemContentView: View, item: Movie?) {
+3. Extend CardSliderAdapter
+```kotlin
+class MovieAdapter(private val movies : ArrayList<Movie>) : CardSliderAdapter<MovieAdapter.MovieViewHolder>() {
+
+    override fun getItemCount() = movies.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_page, parent, false)
+        return MovieViewHolder(view)
+    }
+    
+    override fun bindVH(holder: MovieViewHolder, position: Int) {
       //TODO bind item object with item layout view
     }
 
-    override fun getItemContentLayout(position: Int) : Int {
-        //TODO return the item layout of every position 
-        //This layout will be added as a child of CardView
-    }
+    class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view)
 }
 ```
 or using Java
 ```java
-public class MovieAdapter extends CardSliderAdapter<Movie> {
+public class MovieAdapter extends CardSliderAdapter<MovieAdapter.MovieViewHolder> {
+    
+    private ArrayList<Movie> movies;
     
     public MovieAdapter(ArrayList<Movie> movies){
-        super(movies);
+        this.movies = movies;
     }
     
     @Override
-    public void bindView(int position, View itemContentView, Movie item) {
+    publiv int getItemCount(){
+    	return movies.getSize();
+    }
+    
+     @Override
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_page, parent, false);
+	return new MovieViewHolder(view);
+    }
+    
+    @Override
+    public void bindVH(int position, MovieViewHolder holder) {
       //TODO bind item object with item layout view
     }
-
-    @Override
-    public int getItemContentLayout(int position) {
-        //TODO return the item layout of every position 
-        //This layout will be added as a child of CardView
+    
+    class MovieViewHolder extends RecyclerView.ViewHolder {
+    	
+	public MovieViewHolder(View view){
+	      super(view);
+	}
     }
 }
 ```
-
-3. Create item layout to return it in `getItemContentLayout`
 
 4. Add adapter to CardSliderViewPager
 ```kotlin
@@ -144,12 +165,8 @@ And then bind it with your CardSliderViewPager
 | `cardSlider_minShadow` | The CardView Elevation of  next and previous cards. | baseShadow * smallScaleFactor |
 | `cardSlider_pageMargin` | The space between two pages. This must be large than **baseShadow + minShadow** or it will be override. | baseShadow + minShadow |
 | `cardSlider_otherPagesWidth` | The width of displayed parts from next and previous cards . | 0 |
-| `cardSlider_cardBackgroundColor` | The background color of the card. | White |
-| `cardSlider_cardCornerRadius` | The corner radius of the card view. | 0 |
 | `cardSlider_indicator` | The id of **CardSliderIndicator** to work with this view pager. | no indicator |
 | `auto_slide_time` | The time in seconds to auto sliding between pages in it | no sliding (`STOP_AUTO_SLIDING`) |
-
-paddingLeft and right will be override with `otherPagesWidth + pageMargin` 
 
  2- CardSliderIndicator
  
