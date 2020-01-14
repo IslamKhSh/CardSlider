@@ -2,19 +2,16 @@
 <resources>
     <declare-styleable name="CardSliderViewPager">
 
-        <attr name="cardSlider_pageMargin" format="dimension"/>
-        <attr name="cardSlider_otherPagesWidth" format="dimension"/>
+        <attr name="cardSlider_pageMargin" format="dimension" />
+        <attr name="cardSlider_otherPagesWidth" format="dimension" />
 
-        <attr name="cardSlider_smallScaleFactor" format="float"/>
+        <attr name="cardSlider_smallScaleFactor" format="float" />
         <attr name="cardSlider_smallAlphaFactor" format="float" />
 
-        <attr name="cardSlider_minShadow" format="dimension"/>
-        <attr name="cardSlider_baseShadow" format="dimension"/>
+        <attr name="cardSlider_minShadow" format="dimension" />
+        <attr name="cardSlider_baseShadow" format="dimension" />
 
-        <attr name="cardSlider_cardBackgroundColor" format="color"/>
-        <attr name="cardSlider_cardCornerRadius" format="dimension"/>
-
-        <attr name="cardSlider_indicator" format="reference"/>
+        <attr name="cardSlider_indicator" format="reference" />
 
         <attr name="auto_slide_time" format="integer" />
 
@@ -26,7 +23,10 @@
         <attr name="selectedIndicator" format="reference" />
         <attr name="indicatorMargin" format="dimension" />
         <attr name="indicatorsToShow" format="integer" />
+    </declare-styleable>
 
+    <declare-styleable name="ViewPager2">
+        <attr name="android:orientation" />
     </declare-styleable>
 
 </resources>

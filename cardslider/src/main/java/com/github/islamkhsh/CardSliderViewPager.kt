@@ -1,15 +1,18 @@
 package com.github.islamkhsh
 
 import android.content.Context
-import android.graphics.Color
+import android.graphics.Rect
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.util.forEach
+import androidx.core.view.children
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
-import androidx.viewpager.widget.PagerAdapter
-import com.duolingo.open.rtlviewpager.RtlViewPager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.github.islamkhsh.viewpager2.ViewPager2
 import java.util.*
 import kotlin.math.max
 
@@ -48,28 +51,21 @@ import kotlin.math.max
         ),
         BindingMethod(
             type = CardSliderViewPager::class,
-            attribute = "cardSlider_cardBackgroundColor",
-            method = "setCardBackgroundColor"
-        ),
-        BindingMethod(
-            type = CardSliderViewPager::class,
-            attribute = "cardSlider_cardCornerRadius",
-            method = "setCardCornerRadius"
-        ),
-        BindingMethod(
-            type = CardSliderViewPager::class,
             attribute = "auto_slide_time",
             method = "setAutoSlideTime"
         )
     ]
 )
-class CardSliderViewPager : RtlViewPager {
+class CardSliderViewPager : ViewPager2 {
 
     companion object {
         const val STOP_AUTO_SLIDING = -1
     }
 
     private var indicatorId = -1
+
+    private val recyclerViewInstance = children.first { it is RecyclerView } as RecyclerView
+
 
     /**
      * The small scale factor, height of cards in right and left (previous and next cards)
@@ -78,12 +74,10 @@ class CardSliderViewPager : RtlViewPager {
         set(value) {
             field = value
 
-            (adapter as? CardSliderAdapter<*>)?.cards?.run {
+            (adapter as? CardSliderAdapter<*>)?.viewHolders?.forEach { position, holder ->
 
-                for (position in 0 until size) {
-                    if (position != currentItem)
-                        get(position)?.scaleY = field
-                }
+                if (position != currentItem)
+                    holder.itemView.scaleY = field
             }
         }
 
@@ -94,12 +88,10 @@ class CardSliderViewPager : RtlViewPager {
         set(value) {
             field = value
 
-            (adapter as? CardSliderAdapter<*>)?.cards?.run {
+            (adapter as? CardSliderAdapter<*>)?.viewHolders?.forEach { position, holder ->
 
-                for (position in 0 until size) {
-                    if (position != currentItem)
-                        get(position)?.alpha = field
-                }
+                if (position != currentItem)
+                    holder.itemView.alpha = field
             }
         }
 
@@ -110,7 +102,6 @@ class CardSliderViewPager : RtlViewPager {
         set(value) {
             field = value
             setPageMargin()
-            adapter?.notifyDataSetChanged()
         }
 
     /**
@@ -141,24 +132,6 @@ class CardSliderViewPager : RtlViewPager {
         }
 
     /**
-     * The background color of the CardView
-     */
-    var cardBackgroundColor = Color.WHITE
-        set(value) {
-            field = value
-            adapter?.notifyDataSetChanged()
-        }
-
-    /**
-     * The corner radius of the CardView
-     */
-    var cardCornerRadius = 0f
-        set(value) {
-            field = value
-            adapter?.notifyDataSetChanged()
-        }
-
-    /**
      * The auto sliding time in seconds
      */
     var autoSlideTime = STOP_AUTO_SLIDING
@@ -183,7 +156,8 @@ class CardSliderViewPager : RtlViewPager {
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CardSliderViewPager)
 
-        smallScaleFactor = typedArray.getFloat(R.styleable.CardSliderViewPager_cardSlider_smallScaleFactor, 1f)
+        smallScaleFactor =
+            typedArray.getFloat(R.styleable.CardSliderViewPager_cardSlider_smallScaleFactor, 1f)
 
         smallAlphaFactor =
             typedArray.getFloat(R.styleable.CardSliderViewPager_cardSlider_smallAlphaFactor, 1f)
@@ -193,62 +167,52 @@ class CardSliderViewPager : RtlViewPager {
             context.resources.getDimension(R.dimen.baseCardElevation)
         )
         minShadow =
-            typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_minShadow, baseShadow * smallScaleFactor)
-
-        cardBackgroundColor =
-            typedArray.getColor(R.styleable.CardSliderViewPager_cardSlider_cardBackgroundColor, Color.WHITE)
-        cardCornerRadius = typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_cardCornerRadius, 0f)
+            typedArray.getDimension(
+                R.styleable.CardSliderViewPager_cardSlider_minShadow,
+                baseShadow * smallScaleFactor
+            )
 
         sliderPageMargin =
-            typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_pageMargin, baseShadow + minShadow)
+            typedArray.getDimension(
+                R.styleable.CardSliderViewPager_cardSlider_pageMargin,
+                baseShadow + minShadow
+            )
 
         otherPagesWidth =
             typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_otherPagesWidth, 0f)
 
-        indicatorId = typedArray.getResourceId(R.styleable.CardSliderViewPager_cardSlider_indicator, -1)
+        indicatorId =
+            typedArray.getResourceId(R.styleable.CardSliderViewPager_cardSlider_indicator, -1)
 
         autoSlideTime =
             typedArray.getInt(R.styleable.CardSliderViewPager_auto_slide_time, STOP_AUTO_SLIDING)
 
         typedArray.recycle()
 
-        clipToPadding = false
-        overScrollMode = View.OVER_SCROLL_NEVER
-        offscreenPageLimit = 3
+        recyclerViewInstance.clipToPadding = false
     }
 
     private fun setPageMargin() {
-        pageMargin = max(sliderPageMargin, baseShadow + minShadow).toInt()
-        setPagePadding()
+        val pageMargin = max(sliderPageMargin, baseShadow + minShadow)
+        recyclerViewInstance.addItemDecoration(PageDecoration(pageMargin))
     }
 
     private fun setPagePadding() {
-        setPadding(
-            otherPagesWidth.toInt() + pageMargin, max(paddingTop, baseShadow.toInt()),
-            otherPagesWidth.toInt() + pageMargin, max(paddingBottom, baseShadow.toInt())
-        )
-    }
+        recyclerViewInstance.run {
+            val pageMargin = max(sliderPageMargin, baseShadow + minShadow).toInt()
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-
-        var heightMeasure = heightMeasureSpec
-        val mode = MeasureSpec.getMode(heightMeasureSpec)
-
-
-        if (mode == MeasureSpec.UNSPECIFIED || mode == MeasureSpec.AT_MOST) {
-
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-            var height = 0
-            for (i in 0 until childCount) {
-                val child = getChildAt(i)
-                child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED))
-                val h = child.measuredHeight
-                if (h > height) height = h
-            }
-            heightMeasure = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+            if (orientation == ORIENTATION_HORIZONTAL)
+                setPadding(
+                    otherPagesWidth.toInt() + pageMargin / 2, max(paddingTop, baseShadow.toInt()),
+                    otherPagesWidth.toInt() + pageMargin / 2, max(paddingBottom, baseShadow.toInt())
+                )
+            else
+                setPadding(
+                    max(paddingLeft, baseShadow.toInt()), otherPagesWidth.toInt() + pageMargin / 2,
+                    max(paddingRight, baseShadow.toInt()), otherPagesWidth.toInt() + pageMargin / 2
+                )
         }
 
-        super.onMeasure(widthMeasureSpec, heightMeasure + paddingTop + paddingBottom)
     }
 
 
@@ -258,14 +222,11 @@ class CardSliderViewPager : RtlViewPager {
      * @throws IllegalArgumentException if adapter passed isn't a CardSliderAdapter
      */
     @Throws(IllegalArgumentException::class)
-    override fun setAdapter(adapter: PagerAdapter?) {
-
+    override fun setAdapter(adapter: RecyclerView.Adapter<*>?) {
         require(adapter is CardSliderAdapter<*>) { "adapter must be CardSliderAdapter" }
-
-        adapter.setViewPager(this)
         super.setAdapter(adapter)
 
-        setPageTransformer(false, CardSliderTransformer(this))
+        setPageTransformer(CardSliderTransformer(this))
 
         if (indicatorId != -1)
             rootView.findViewById<CardSliderIndicator>(indicatorId)?.run {
@@ -293,10 +254,29 @@ class CardSliderViewPager : RtlViewPager {
         override fun run() {
             adapter?.run {
                 Handler(Looper.getMainLooper()).post {
-                    currentItem = if (currentItem == count - 1) 0 else currentItem + 1
+                    currentItem = if (currentItem == itemCount - 1) 0 else currentItem + 1
                 }
             }
         }
     }
 
+    inner class PageDecoration(private val space: Float) : ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect, view: View,
+            parent: RecyclerView, state: RecyclerView.State
+        ) {
+            if (orientation == ORIENTATION_HORIZONTAL){
+                outRect.left = (space / 2).toInt()
+                outRect.right = (space / 2).toInt()
+                outRect.top = 0
+                outRect.bottom = 0
+            } else {
+                outRect.top = (space / 2).toInt()
+                outRect.bottom = (space / 2).toInt()
+                outRect.left = 0
+                outRect.right = 0
+            }
+        }
+
+    }
 }

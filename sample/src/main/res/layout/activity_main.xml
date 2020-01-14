@@ -1,74 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/activity_background"
-        tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_background"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <com.github.islamkhsh.CardSliderViewPager
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/viewPager"
-            android:layout_marginTop="24dp"
-            app:cardSlider_smallScaleFactor="0.9"
-            app:cardSlider_smallAlphaFactor="0.5"
-            app:cardSlider_otherPagesWidth="24dp"
-            app:cardSlider_pageMargin="12dp"
-            app:cardSlider_cardCornerRadius="5dp"
-            app:cardSlider_indicator="@id/indicator"
-            app:auto_slide_time="3"
-    />
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:auto_slide_time="3"
+        app:cardSlider_indicator="@id/indicator"
+        app:cardSlider_otherPagesWidth="24dp"
+        app:cardSlider_pageMargin="12dp"
+        app:cardSlider_smallAlphaFactor="0.5"
+        app:cardSlider_smallScaleFactor="0.9" />
 
 
     <com.github.islamkhsh.CardSliderIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/indicator"
-            android:layout_marginTop="12dp"
-            app:indicatorsToShow="5"
-            android:layout_gravity="center_horizontal"
-    />
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        app:indicatorsToShow="5" />
 
 
     <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Enable scale"
-            android:id="@+id/check_scaling"
-            android:layout_marginTop="36dp"
-            android:layout_marginStart="48dp" />
+        android:id="@+id/check_scaling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="36dp"
+        android:checked="true"
+        android:text="Enable scale" />
 
     <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Enable changing opacity"
-            android:id="@+id/check_alpha_changing"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="48dp" />
+        android:id="@+id/check_alpha_changing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:checked="true"
+        android:text="Enable changing opacity" />
 
     <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Enable auto sliding"
-            android:id="@+id/check_enable_auto_sliding"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="48dp" />
+        android:id="@+id/check_enable_auto_sliding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:checked="true"
+        android:text="Enable auto sliding" />
 
 
     <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Infinite indicator"
-            android:id="@+id/check_infinite_indicator"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="48dp" />
+        android:id="@+id/check_infinite_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:checked="true"
+        android:text="Infinite indicator" />
 
 </LinearLayout>

@@ -8,17 +8,44 @@ import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.viewpager.widget.ViewPager
 import com.github.islamkhsh.CardSliderIndicator.IndicatorState.*
 import com.github.islamkhsh.CardSliderIndicator.SwipeDirection.TO_END
 import com.github.islamkhsh.CardSliderIndicator.SwipeDirection.TO_START
+import com.github.islamkhsh.viewpager2.ViewPager2
+import com.github.islamkhsh.viewpager2.ViewPager2.ORIENTATION_VERTICAL
 import kotlin.math.min
 
 
-class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
+class CardSliderIndicator : LinearLayout {
 
     companion object {
         const val UNLIMITED_INDICATORS = -1
+    }
+
+    private val pageChangeListener = object : ViewPager2.OnPageChangeCallback(){
+        override fun onPageScrollStateChanged(state: Int) {}
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+        override fun onPageSelected(position: Int) {
+
+            if (position > selectedPosition)
+                swipeDirection = TO_END
+            else if (position < selectedPosition)
+                swipeDirection = TO_START
+
+            changeIndicatorsDisplayingState(position)
+
+            for (i in 0 until childCount) {
+
+                if (i == position)
+                    changeIndicatorState(i, selectedIndicator!!)
+                else
+                    changeIndicatorState(i, defaultIndicator!!)
+            }
+
+            selectedPosition = position
+        }
     }
 
     private var selectedPosition = 0
@@ -62,6 +89,7 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
             setupWithViewCardSliderViewPager()
         }
 
+
     constructor(context: Context) : super(context) {
         initIndicatorGroup(null)
     }
@@ -71,9 +99,9 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
+            context,
+            attrs,
+            defStyleAttr
     ) {
         initIndicatorGroup(attrs)
     }
@@ -85,11 +113,11 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
 
         defaultIndicator = typedArray.getDrawable(R.styleable.CardSliderIndicator_defaultIndicator)
         selectedIndicator =
-            typedArray.getDrawable(R.styleable.CardSliderIndicator_selectedIndicator)
+                typedArray.getDrawable(R.styleable.CardSliderIndicator_selectedIndicator)
 
         indicatorMargin = typedArray.getDimension(
-            R.styleable.CardSliderIndicator_indicatorMargin,
-            min(defaultIndicator!!.intrinsicWidth, selectedIndicator!!.intrinsicWidth).toFloat()
+                R.styleable.CardSliderIndicator_indicatorMargin,
+                min(defaultIndicator!!.intrinsicWidth, selectedIndicator!!.intrinsicWidth).toFloat()
         )
 
         indicatorsToShow = typedArray.getInt(R.styleable.CardSliderIndicator_indicatorsToShow, -1)
@@ -112,14 +140,14 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
             removeAllViews()
 
             // create indicators
-            for (i in 0 until count) {
+            for (i in 0 until itemCount) {
                 addView(Indicator(context), i)
             }
 
-            onPageSelected(viewPager!!.currentItem)
+            pageChangeListener.onPageSelected(viewPager!!.currentItem)
 
-            viewPager?.removeOnPageChangeListener(this@CardSliderIndicator)
-            viewPager?.addOnPageChangeListener(this@CardSliderIndicator)
+            viewPager?.unregisterOnPageChangeCallback(pageChangeListener)
+            viewPager?.registerOnPageChangeCallback(pageChangeListener)
         }
     }
 
@@ -141,29 +169,7 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
             displayingRang = displayingRang.increment(childCount - 1)
     }
 
-    override fun onPageScrollStateChanged(state: Int) {}
 
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
-    override fun onPageSelected(position: Int) {
-
-        if (position > selectedPosition)
-            swipeDirection = TO_END
-        else if (position < selectedPosition)
-            swipeDirection = TO_START
-
-        changeIndicatorsDisplayingState(position)
-
-        for (i in 0 until childCount) {
-
-            if (i == position)
-                changeIndicatorState(i, selectedIndicator!!)
-            else
-                changeIndicatorState(i, defaultIndicator!!)
-        }
-
-        selectedPosition = position
-    }
 
     private inner class Indicator : View {
 
@@ -214,7 +220,7 @@ class CardSliderIndicator : LinearLayout, ViewPager.OnPageChangeListener {
         constructor(context: Context) : super(context)
         constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
         constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-            context, attrs, defStyleAttr
+                context, attrs, defStyleAttr
         )
 
         fun changeIndicatorDrawableState(drawableState: Drawable) {
