@@ -16,21 +16,19 @@ Custom ViewPager2 and uses a page transformer to apply scaling action as shown i
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
 ## Features
-1- Show preview of pages in left and right.
+1- Show preview of pages in left and right (or top and bottom).
 
 2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
 
 3- Can make pages auto swiped after specific time.
 
-4- Full customize the appearance of the the CardView and ViewPager.
+4- Add indicator and full customize it easily.
 
-5- Add indicator and full customize it easily.
+5- Infinite indicators like those in the Instagram app.
 
-6- Infinite indicators like those in the Instagram app.
+6- RTL Support.
 
-7- RTL Support.
-
-8- Support vertical orientation.
+7- Support vertical orientation.
 
 
 ## Add to project
