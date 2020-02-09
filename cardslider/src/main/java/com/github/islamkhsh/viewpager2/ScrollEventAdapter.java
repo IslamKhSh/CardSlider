@@ -103,8 +103,7 @@ final class ScrollEventAdapter extends RecyclerView.OnScrollListener {
     @Override
     public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         // User started a drag (not dragging -> dragging)
-        if (mAdapterState != STATE_IN_PROGRESS_MANUAL_DRAG
-                && newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
             startDrag(false);
             return;
         }
