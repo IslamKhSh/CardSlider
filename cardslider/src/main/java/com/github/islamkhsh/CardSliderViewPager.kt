@@ -62,7 +62,7 @@ class CardSliderViewPager : ViewPager2 {
         const val STOP_AUTO_SLIDING = -1
     }
 
-    private var indicatorId = -1
+    private var indicatorId = View.NO_ID
 
     private val recyclerViewInstance = children.first { it is RecyclerView } as RecyclerView
 
@@ -182,7 +182,10 @@ class CardSliderViewPager : ViewPager2 {
             typedArray.getDimension(R.styleable.CardSliderViewPager_cardSlider_otherPagesWidth, 0f)
 
         indicatorId =
-            typedArray.getResourceId(R.styleable.CardSliderViewPager_cardSlider_indicator, -1)
+            typedArray.getResourceId(
+                R.styleable.CardSliderViewPager_cardSlider_indicator,
+                View.NO_ID
+            )
 
         autoSlideTime =
             typedArray.getInt(R.styleable.CardSliderViewPager_auto_slide_time, STOP_AUTO_SLIDING)
@@ -228,10 +231,9 @@ class CardSliderViewPager : ViewPager2 {
 
         setPageTransformer(CardSliderTransformer(this))
 
-        if (indicatorId != -1)
-            rootView.findViewById<CardSliderIndicator>(indicatorId)?.run {
-                viewPager = this@CardSliderViewPager
-            }
+        rootView.findViewById<CardSliderIndicator>(indicatorId)?.run {
+            viewPager = this@CardSliderViewPager
+        }
 
         doOnPageSelected { initAutoSlidingTimer() }
     }
@@ -265,7 +267,7 @@ class CardSliderViewPager : ViewPager2 {
             outRect: Rect, view: View,
             parent: RecyclerView, state: RecyclerView.State
         ) {
-            if (orientation == ORIENTATION_HORIZONTAL){
+            if (orientation == ORIENTATION_HORIZONTAL) {
                 outRect.left = (space / 2).toInt()
                 outRect.right = (space / 2).toInt()
                 outRect.top = 0

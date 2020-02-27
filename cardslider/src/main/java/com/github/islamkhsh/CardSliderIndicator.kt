@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.github.islamkhsh.CardSliderIndicator.IndicatorState.*
 import com.github.islamkhsh.CardSliderIndicator.SwipeDirection.TO_END
 import com.github.islamkhsh.CardSliderIndicator.SwipeDirection.TO_START
@@ -148,6 +149,28 @@ class CardSliderIndicator : LinearLayout {
 
             viewPager?.unregisterOnPageChangeCallback(pageChangeListener)
             viewPager?.registerOnPageChangeCallback(pageChangeListener)
+
+            registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
+                override fun onChanged() {
+                    setupWithViewCardSliderViewPager()
+                }
+
+                override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
+                    setupWithViewCardSliderViewPager()
+                }
+
+                override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+                    setupWithViewCardSliderViewPager()
+                }
+
+                override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
+                    setupWithViewCardSliderViewPager()
+                }
+
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    setupWithViewCardSliderViewPager()
+                }
+            })
         }
     }
 
