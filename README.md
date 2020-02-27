@@ -1,7 +1,7 @@
 # Card Slider [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856) [![Jitpack.io](https://jitpack.io/v/IslamKhSh/CardSlider.svg)](https://jitpack.io/#IslamKhSh/CardSlider)
 
 
-This is an Android library with many features and attrs to get exactly what you need.
+This is an Android library that implemnts carousel effect with many features and attrs to get exactly what you need.
 
 ![preview](https://github.com/IslamKhSh/CardSlider/blob/master/card%20slider.gif)
 
@@ -10,7 +10,7 @@ This is an Android library with many features and attrs to get exactly what you 
 
 ## Card Slider components
 1. [CardSliderViewPager](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderViewPager.kt):
-Custom ViewPager2 and uses a page transformer to apply scaling action as shown in GIF.
+Custom ViewPager2 and uses a page transformer to apply carousel effect as shown in GIF.
 	- As ViewPager2 is still a final class [follow this issue](https://issuetracker.google.com/issues/140751461), I added it as part of my package.
 2. [CardSliderIndicator](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderIndicator.kt): Custom LinearLayout that that contain indicators as children views.
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
@@ -18,7 +18,7 @@ Custom ViewPager2 and uses a page transformer to apply scaling action as shown i
 ## Features
 1- Show preview of pages in left and right (or top and bottom).
 
-2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF.
+2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF (carousel effect).
 
 3- Can make pages auto swiped after specific time.
 
