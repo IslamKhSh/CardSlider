@@ -56,7 +56,7 @@ import kotlin.math.max
         )
     ]
 )
-class CardSliderViewPager : ViewPager2 {
+open class CardSliderViewPager : ViewPager2 {
 
     companion object {
         const val STOP_AUTO_SLIDING = -1
