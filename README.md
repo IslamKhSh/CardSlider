@@ -1,4 +1,5 @@
-# Card Slider [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856) [![Jitpack.io](https://jitpack.io/v/IslamKhSh/CardSlider.svg)](https://jitpack.io/#IslamKhSh/CardSlider)
+# Card Slider
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Card%20Slider-brightgreen.svg?style=plastic)](https://android-arsenal.com/details/1/7856) [![Jitpack.io](https://jitpack.io/v/IslamKhSh/CardSlider.svg)](https://jitpack.io/#IslamKhSh/CardSlider)
 
 
 This is an Android library that implemnts carousel effect with many features and attrs to get exactly what you need.
@@ -16,19 +17,19 @@ Custom ViewPager2 and uses a page transformer to apply carousel effect as shown 
 3. [CardSliderAdapter](https://github.com/IslamKhSh/CardSlider/blob/master/cardslider/src/main/java/com/github/islamkhsh/CardSliderAdapter.kt): Abstract class that must be extended and passed to CardSliderViewPager as its adapter.
 
 ## Features
-1- Show preview of pages in left and right (or top and bottom).
+1. Show preview of pages in left and right (or top and bottom).
 
-2- Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF (carousel effect).
+2. Can resize (scale) and change opacity of the pages to make focused page larger and more focused in height as shown in GIF (carousel effect).
 
-3- Can make pages auto swiped after specific time.
+3. Can make pages auto swiped after specific time.
 
-4- Add indicator and full customize it easily.
+4. Add indicator and full customize it easily.
 
-5- Infinite indicators like those in the Instagram app.
+5. Infinite indicators like those in the Instagram app.
 
-6- RTL Support.
+6. RTL Support.
 
-7- Support vertical orientation.
+7. Support vertical orientation.
 
 
 ## Add to project
@@ -45,7 +46,7 @@ allprojects {
 ```groovy
 implementation 'com.github.IslamKhSh:CardSlider:{latest_version}'
 ```
-  Find the latest version [here](https://github.com/IslamKhSh/CardSlider/releases)
+  Find the latest version [![Jitpack.io](https://jitpack.io/v/IslamKhSh/CardSlider.svg)](https://jitpack.io/#IslamKhSh/CardSlider)
    
     
  
